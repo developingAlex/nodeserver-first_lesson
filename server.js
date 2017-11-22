@@ -1,5 +1,8 @@
 const HTTP = require('http');
 const { sendJSON, sendHTML } = require('./utils');
+const fileSystem = require('fs');
+
+
 const server = HTTP.createServer((request, response) => {
   let path = request.url;
   console.log("request received", path);
@@ -8,6 +11,15 @@ const server = HTTP.createServer((request, response) => {
   }
   else if (path === '/opensesame'){
     response.end("ooh you found the easter egg!");
+  }
+  else if (path === '/example.gif'){
+    let filePath = "./assets/wombat.gif";
+    let stat = fileSystem.statSync(filePath);
+    response.writeHead(200, {
+      'Content-Type': 'image/gif',
+      'Content-length': stat.size
+    });
+    fileSystem.createReadStream(filePath).pipe(response);
   }
   else if (path === '/postcode.json'){
     sendJSON(response, 200, [
