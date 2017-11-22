@@ -1,0 +1,9 @@
+GET http://localhost:8001/
+
+###
+
+GET http://localhost:8001/opensesame
+
+###
+
+GET http://localhost:8001/someurl
