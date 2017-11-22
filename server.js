@@ -1,5 +1,5 @@
 const HTTP = require('http');
-const { sendJSON } = require('./utils');
+const { sendJSON, sendHTML } = require('./utils');
 const server = HTTP.createServer((request, response) => {
   let path = request.url;
   console.log("request received", path);
@@ -10,34 +10,31 @@ const server = HTTP.createServer((request, response) => {
     response.end("ooh you found the easter egg!");
   }
   else if (path === '/postcode.json'){
-    sendJSON(response, [
+    sendJSON(response, 200, [
       {"name": "Melbourne", "postcode": 3000},
       {"name": "Tottenham", "postcode": 3012},
       {"name": "Albion", "postcode": 3020},
       {"name": "Sunshine", "postcode": 3011},
     ]);
   }
-  else if (path === '/about'){ // instead of /about.html because its more modern to leave off the .html
-    response.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
+  else if (path === '/assets/main.css'){
     response.end(`
-    <!doctype html>
-    <html>
-      <body>
+    h1{
+      color: red;
+    }`);
+  }
+  else if (path === '/about'){ // instead of /about.html because its more modern to leave off the .html
+    
+    sendHTML(response, 200, `
       <h1>about</h1>
       <p>
       This is a paragraph
       </p>
-      </body>
-    </html>
-    `);
+      `, 'main.css');
   }
   else {
-    response.writeHead(404)
-    response.end('page not found');
+    sendJSON(response, 404, {"message": "page not found"});    
   }
-
 });
 
 //start the server:
