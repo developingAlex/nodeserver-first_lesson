@@ -1,0 +1,14 @@
+{
+  "name": "node-server",
+  "version": "1.0.0",
+  "description": "first hello world server in node.js",
+  "main": "server.js",
+  "author": "alex palma",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
+  "scripts": {
+    "dev": "nodemon server.js"
+  }
+}
