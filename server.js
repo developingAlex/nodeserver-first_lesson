@@ -1,5 +1,5 @@
 const HTTP = require('http');
-
+const { sendJSON } = require('./utils');
 const server = HTTP.createServer((request, response) => {
   let path = request.url;
   console.log("request received", path);
@@ -10,15 +10,12 @@ const server = HTTP.createServer((request, response) => {
     response.end("ooh you found the easter egg!");
   }
   else if (path === '/postcode.json'){
-    response.writeHead(200, {
-      'Content-Type': 'application/json'
-    });
-    response.end(JSON.stringify([
+    sendJSON(response, [
       {"name": "Melbourne", "postcode": 3000},
       {"name": "Tottenham", "postcode": 3012},
       {"name": "Albion", "postcode": 3020},
       {"name": "Sunshine", "postcode": 3011},
-    ]));
+    ]);
   }
   else if (path === '/about'){ // instead of /about.html because its more modern to leave off the .html
     response.writeHead(200, {
