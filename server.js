@@ -15,6 +15,22 @@ const server = HTTP.createServer((request, response) => {
     });
     response.end(`{"name": "Melbourne", "postcode": "3000"}`);
   }
+  else if (path === '/about'){ // instead of /about.html because its more modern to leave off the .html
+    response.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
+    response.end(`
+    <!doctype html>
+    <html>
+      <body>
+      <h1>about</h1>
+      <p>
+      This is a paragraph
+      </p>
+      </body>
+    </html>
+    `);
+  }
   else {
     response.end('back at you');
   }
