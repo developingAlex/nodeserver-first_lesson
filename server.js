@@ -13,7 +13,12 @@ const server = HTTP.createServer((request, response) => {
     response.writeHead(200, {
       'Content-Type': 'application/json'
     });
-    response.end(`{"name": "Melbourne", "postcode": "3000"}`);
+    response.end(JSON.stringify([
+      {"name": "Melbourne", "postcode": 3000},
+      {"name": "Tottenham", "postcode": 3012},
+      {"name": "Albion", "postcode": 3020},
+      {"name": "Sunshine", "postcode": 3011},
+    ]));
   }
   else if (path === '/about'){ // instead of /about.html because its more modern to leave off the .html
     response.writeHead(200, {
