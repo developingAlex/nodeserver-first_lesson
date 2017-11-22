@@ -10,6 +10,9 @@ const server = HTTP.createServer((request, response) => {
     response.end("ooh you found the easter egg!");
   }
   else if (path === '/postcode.json'){
+    response.writeHead(200, {
+      'Content-Type': 'application/json'
+    });
     response.end(`{"name": "Melbourne", "postcode": "3000"}`);
   }
   else {
