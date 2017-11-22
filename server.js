@@ -29,6 +29,30 @@ const server = HTTP.createServer((request, response) => {
       {"name": "Sunshine", "postcode": 3011},
     ]);
   }
+  else if (path.startsWith('/postcode/')){
+    //get the part of the url that should be a postcode and attempt to convert it to an integer
+    postcodeNumber = parseInt(path.slice(10));
+    //check if there is a file with that number that exists in our /postcode/ folder:
+    pathToPostcodeFile = `./postcode/${postcodeNumber}.json`;
+    fileSystem.exists(pathToPostcodeFile, function(exists){
+      if (exists){
+        response.writeHead(200, {
+          "Content-Type": "application/json"
+        })
+        fileSystem.createReadStream(pathToPostcodeFile).pipe(response)
+      }
+      else{ //when no postcode file exists..
+        sendHTML(response, 404, `
+        <h1>Sorry I don't have anything on postcode ${postcodeNumber}</h1>
+        `, 'main.css');
+      }
+    })
+
+    console.log(postcodeNumber);
+
+    // sendJSON(response, 200, `./postcode/${postcodeNumber}.json`);
+
+  }
   else if (path === '/assets/main.css'){
     response.end(`
     h1{
