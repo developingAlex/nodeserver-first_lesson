@@ -1,3 +1,7 @@
+## prereqs
+installed the REST Client by Huachao Mao for VSCode
+
+## steps 
 after creating this code and verifying it works by visiting it in a browser and seeing it output in the terminal 'request recieved' ran the yarn init command
 
 ```javascript
