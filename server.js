@@ -9,6 +9,9 @@ const server = HTTP.createServer((request, response) => {
   else if (path === '/opensesame'){
     response.end("ooh you found the easter egg!");
   }
+  else if (path === '/postcode.json'){
+    response.end(`{"name": "Melbourne", "postcode": "3000"}`);
+  }
   else {
     response.end('back at you');
   }

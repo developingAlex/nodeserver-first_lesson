@@ -64,5 +64,7 @@ const server = HTTP.createServer((request, response) => {
 });
 ```
 
+When we make a REST http file with some GET lines in it and use the REST Client extension to test the servers responses and inspect them we see that it doesn't mention ?? MIME ?? 
+
 
 
