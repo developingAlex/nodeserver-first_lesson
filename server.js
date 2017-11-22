@@ -37,7 +37,8 @@ const server = HTTP.createServer((request, response) => {
     `);
   }
   else {
-    response.end('back at you');
+    response.writeHead(404)
+    response.end('page not found');
   }
 
 });
