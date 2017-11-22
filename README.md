@@ -82,3 +82,25 @@ When we make a REST http file with some GET lines in it and use the REST Client 
 
 
 
+## challenges set in class:
+
+1. Add `/postcode/3021` json response
+2. Add `sendHTML(response, mainHTML)` function to *utils.js*
+
+```
+sendHTML(response, `
+<h1>About</h1>
+<p>This is a paragraph</p>
+`)
+```
+
+3. Change the *not found* route to send back JSON instead of plain text, while still keeping the 404 status code — e.g. `{ "error": "Page not found" }`
+4. Add `/assets/main.css` route with some simple CSS
+5. Change `sendHTML()` to add a `<link>` to the *main.css* URL (edited)
+patrick 2:56 PM
+*Advanced challenge*
+6. Add a *assets* directory with an gif file inside. Serve that file at `/assets/example.gif` with the correct content type.
+patrick 3:06 PM
+Current code: https://github.com/Coder-Academy-Patterns/node-vanilla-http-server2
+3:07
+7. (Advanced) Add a catch-all `/postcode/(number)` route, which reads a matching file in a *postcodes* directory. e.g. `/postcode/3040` will read the file at `/postcodes/3040.json` in the project directory, and send it back. Otherwise, if no matching file is found, it will 404
