@@ -53,20 +53,22 @@ const server = HTTP.createServer((request, response) => {
     // sendJSON(response, 200, `./postcode/${postcodeNumber}.json`);
 
   }
-  else if (path === '/assets/main.css'){
+  else if (path.startsWith('/assets/colors/')){
+    color = path.slice(15);
+    color = color.split('.')[0];
     response.end(`
     h1{
-      color: red;
+      color: ${color};
     }`);
   }
-  else if (path === '/about'){ // instead of /about.html because its more modern to leave off the .html
-    
+  else if (path.startsWith('/about')){ // instead of /about.html because its more modern to leave off the .html
+    let color = path.slice(6);
     sendHTML(response, 200, `
       <h1>about</h1>
       <p>
       This is a paragraph
       </p>
-      `, 'main.css');
+      `, `${color}.css`);
   }
   else {
     sendJSON(response, 404, {"message": "page not found"});    
