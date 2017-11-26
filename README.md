@@ -27,7 +27,7 @@ server.listen(8001, (error) => {
 
 `yarn init`
 
-then ran `yarn add nodemon --dev` to detect file changes and ??
+then ran `yarn add nodemon --dev` to detect file changes and automatically reboot our server.
 
 (then in future when you run your app run it with `node_modules/.bin/nodemon server.js`)
 
@@ -70,7 +70,7 @@ const server = HTTP.createServer((request, response) => {
 });
 ```
 
-When we make a REST http file with some GET lines in it and use the REST Client extension to test the servers responses and inspect them we see that it doesn't mention mimetype so we can fix that by adding the following line to our http server codeblock:
+When we make a REST http file with some GET lines in it (NOTE to work the GET/PUT/etc lines MUST be separated by three hash characters `###`) and use the REST Client extension to test the servers responses and inspect them we see that it doesn't mention mimetype so we can fix that by adding the following line to our http server codeblock:
 ```javascript
   else if (path === '/postcode.json'){
     response.writeHead(200, {
